@@ -160,10 +160,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EyeEvolution.cpp" />
+    <ClCompile Include="Network.cpp" />
     <ClCompile Include="predator.cpp" />
     <ClCompile Include="prey.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="model.h" />
+    <ClInclude Include="Network.h" />
+    <ClInclude Include="NN.h" />
     <ClInclude Include="predator.h" />
     <ClInclude Include="prey.h" />
     <ClInclude Include="RayCast.h" />

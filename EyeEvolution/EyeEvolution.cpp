@@ -33,14 +33,16 @@ int main()
         }
 
         window.clear();
-    //    window.draw(prey.shape);
+        window.draw(prey.shape);
+        prey.Behave();
 
        // SpritePopulation[i].hit[0] = SpritePopulation[i].rayTrace(0); SpritePopulation[i].rays[0].line.append(SpritePopulation[i].shape.getPosition()); SpritePopulation[i].rays[0].line.append(SpritePopulation[i].hit[0].hitPos);
         //we need to map the ray start and end to hit point
 
+        for(int i=0;i<4;i++)
+            window.draw(prey.rays[i].line);
+     
 
-        window.draw(prey.rays[0].line);
-        window.draw(prey.rays[1].line);
         window.display();
     }
 

@@ -32,8 +32,7 @@ public:
 	Ray()
 	{
 		VertexArray line(LinesStrip, 2);
-		line[0].color = Color::Green;
-		line[1].color = Color::Green;
+
 	}
 };
 class DirectionVec

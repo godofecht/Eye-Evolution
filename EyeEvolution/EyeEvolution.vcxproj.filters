@@ -24,6 +24,9 @@
     <ClCompile Include="prey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Network.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="predator.h">
@@ -33,6 +36,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="RayCast.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Network.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NN.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="model.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
