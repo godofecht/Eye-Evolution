@@ -1,3 +1,6 @@
+#ifndef MODEL_H
+#define MODEL_H
+
 #include "NN.h"
 #include "Network.h"
 #include <iostream>
@@ -68,3 +71,4 @@ public:
         }
     }
 };
+#endif

@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "prey.h"
+#include "predator.h"
 
 int main()
 {
@@ -11,18 +12,18 @@ int main()
     sf::Clock clock;
 
 
-    Prey prey;
+    Prey prey; Predator predator;
 
     while (window.isOpen())
     {
         //get time
         sf::Time elapsed = clock.getElapsedTime();
-     //   std::cout << elapsed.asSeconds()<<"\n";
+        //   std::cout << elapsed.asSeconds()<<"\n";
 
 
 
 
-        
+
 
 
         sf::Event event;
@@ -34,13 +35,17 @@ int main()
 
         window.clear();
         window.draw(prey.shape);
+        window.draw(predator.shape);
         prey.Behave();
+        predator.Behave();
+        // SpritePopulation[i].hit[0] = SpritePopulation[i].rayTrace(0); SpritePopulation[i].rays[0].line.append(SpritePopulation[i].shape.getPosition()); SpritePopulation[i].rays[0].line.append(SpritePopulation[i].hit[0].hitPos);
+         //we need to map the ray start and end to hit point
 
-       // SpritePopulation[i].hit[0] = SpritePopulation[i].rayTrace(0); SpritePopulation[i].rays[0].line.append(SpritePopulation[i].shape.getPosition()); SpritePopulation[i].rays[0].line.append(SpritePopulation[i].hit[0].hitPos);
-        //we need to map the ray start and end to hit point
-
-        for(int i=0;i<4;i++)
+        for (int i = 0; i < 4; i++)
+        {
             window.draw(prey.rays[i].line);
+            window.draw(predator.rays[i].line);
+        }
      
 
         window.display();

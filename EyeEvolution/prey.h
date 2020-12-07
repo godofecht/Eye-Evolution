@@ -22,6 +22,8 @@ public:
 
 	Prey()
 	{
+		shape.setFillColor(Color::Green);
+
 		rays[0] = Ray();
 		rays[1] = Ray();
 		rays[2] = Ray();
@@ -35,7 +37,7 @@ public:
 
 
 		shape.setRadius(30);
-		shape.setFillColor(Color(300, 300, 300));
+//		shape.setFillColor(Color(300, 300, 300));
 		shape.setPosition(position);
 		shape.setOrigin(Vector2f(shape.getRadius(), shape.getRadius()));
 		shape.setRotation(45);	

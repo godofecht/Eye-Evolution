@@ -5,26 +5,35 @@ C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(48,1): warning C
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(49,1): warning C4305: 'return': truncation from 'double' to 'float'
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(53,1): warning C4305: 'return': truncation from 'double' to 'float'
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(54,1): warning C4305: 'return': truncation from 'double' to 'float'
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\model.h(18,21): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(38,1): warning C4305: 'argument': truncation from 'int' to 'sf::Uint8'
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(38,38): warning C4309: 'argument': truncation of constant value
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(38,33): warning C4309: 'argument': truncation of constant value
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(38,28): warning C4309: 'argument': truncation of constant value
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(61,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\model.h(21,21): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(63,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(62,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(64,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(98,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(99,140): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(99,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(100,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(101,140): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(101,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(65,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(66,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(102,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(103,140): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(103,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Generating code
-  2 of 366 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+  3 of 372 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

@@ -1,3 +1,6 @@
+#ifndef NETWORK_H
+#define NETWORK_H
+
 #include "NN.h"
 #include <vector>
 
@@ -22,3 +25,4 @@ class Network
 		double m_recentAverageError;
 		double m_recentAverageSmoothingFactor;
 };
+#endif
