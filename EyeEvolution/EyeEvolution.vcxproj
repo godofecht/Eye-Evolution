@@ -165,6 +165,9 @@
     <ClCompile Include="prey.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Environment.h" />
+    <ClInclude Include="FitnessTables.h" />
+    <ClInclude Include="Genes.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="NN.h" />

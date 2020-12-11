@@ -47,5 +47,14 @@
     <ClInclude Include="model.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Genes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FitnessTables.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

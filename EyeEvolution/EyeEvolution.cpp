@@ -3,16 +3,24 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "prey.h"
-#include "predator.h"
+#include "Environment.h"
+#include "FitnessTables.h"
 
 int main()
 {
+    srand((unsigned int)time(NULL)); //necessary otherwise you'll get something like 0.71717277 every time.
+
+
+
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
     sf::Clock clock;
 
 
-    Prey prey; Predator predator;
+    Environment savannah = Environment();
+    Environment savannah2 = Environment();
+    savannah.window = &window;
+    savannah2.window = &window;
+
 
     while (window.isOpen())
     {
@@ -34,19 +42,8 @@ int main()
         }
 
         window.clear();
-        window.draw(prey.shape);
-        window.draw(predator.shape);
-        prey.Behave();
-        predator.Behave();
-        // SpritePopulation[i].hit[0] = SpritePopulation[i].rayTrace(0); SpritePopulation[i].rays[0].line.append(SpritePopulation[i].shape.getPosition()); SpritePopulation[i].rays[0].line.append(SpritePopulation[i].hit[0].hitPos);
-         //we need to map the ray start and end to hit point
-
-        for (int i = 0; i < 4; i++)
-        {
-            window.draw(prey.rays[i].line);
-            window.draw(predator.rays[i].line);
-        }
-     
+        savannah.Run();
+        savannah2.Run();
 
         window.display();
     }

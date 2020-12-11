@@ -1,7 +1,11 @@
+#ifndef PREY_H
+#define PREY_H
+
 #include<SFML/Graphics/Shape.hpp>
 #include "RayCast.h"
 #include <math.h>
 #include "model.h"
+#include "Genes.h"
 
 using namespace sf;
 
@@ -10,8 +14,8 @@ class Prey
 public:
 	sf::CircleShape shape;
 
-	Ray rays[4]; //one for left eye, one for right
-	Hit hit[4]; //might be worth combining ray and hit
+	vector<Ray> rays; //one for left eye, one for right
+	Hit* hit; //might be worth combining ray and hit
 
 	float distFromDestination;
 
@@ -20,14 +24,24 @@ public:
 	Vector2f position;
 
 
-	Prey()
-	{
-		shape.setFillColor(Color::Green);
+	Gene gene;
 
-		rays[0] = Ray();
-		rays[1] = Ray();
-		rays[2] = Ray();
-		rays[3] = Ray();
+	int num_eyes;
+
+	double fitness = 0;
+
+	Prey(int numEyes)
+	{
+		hit = new Hit[numEyes];
+
+		num_eyes = numEyes;
+
+		shape.setFillColor(Color::Green);
+		for (int i = 0; i < numEyes; i++)
+		{
+			rays.push_back(Ray());
+		}
+
 
 		//starting position
 		position =  Vector2f(300, 300);
@@ -36,19 +50,33 @@ public:
 
 
 
-		shape.setRadius(30);
+		shape.setRadius(10);
 //		shape.setFillColor(Color(300, 300, 300));
 		shape.setPosition(position);
 		shape.setOrigin(Vector2f(shape.getRadius(), shape.getRadius()));
-		shape.setRotation(45);	
+	//	shape.setRotation(45);	
 
 
 		//brain stuff
 		vector<unsigned> brain_topology;
-		brain_topology.push_back(2);
-		brain_topology.push_back(4);
+
+		brain_topology.push_back(num_eyes);
+		brain_topology.push_back(3);
+
+
 		brain.SetTopology(brain_topology);
 		brain.InitializeTopology();
+
+		//Gene stuff
+		gene.InitializeRandom(2, brain.GetWeights().size());
+		//put weights from gene into prey
+		brain.getNetwork()->PutWeights(gene.weights);
+		//place eyes accordingly
+
+	}
+	~Prey()
+	{
+
 	}
 
 	Hit rayTrace(float angle)
@@ -86,9 +114,19 @@ public:
 
 		vector<double> movementVector;
 		vector<double> inputVector;
+		inputVector.clear();
 
-		inputVector.push_back(0.2);
-		inputVector.push_back(0.2);
+		for (int i = 0; i < num_eyes; i++)
+		{
+			if (hit[i].bHit)
+				inputVector.push_back(1);
+			else
+				inputVector.push_back(0);
+
+		}
+
+	//	inputVector.push_back(0.2);
+	//	inputVector.push_back(0.2);
 
 		movementVector = GetMovementVector(inputVector);
 		double movementForward = movementVector[0];
@@ -100,18 +138,11 @@ public:
 		shape.setRotation(shape.getRotation() + rotationSpeed * (rotation));
 		shape.setPosition(shape.getPosition().x + positionSpeed * movementForward * cos(shape.getRotation() * M_PI / 180), shape.getPosition().y + positionSpeed *movementForward * sin(shape.getRotation() * M_PI / 180));
 
-	//	hit[0] = rayTrace(0 + shape.getRotation());rays[0].line.append(shape.getPosition()); rays[0].line.append(hit[0].hitPos);
-		
-
-		hit[0] = rayTrace(-65 + shape.getRotation());
-		hit[1] = rayTrace(-35 + shape.getRotation());
-		hit[2] = rayTrace(35 + shape.getRotation());
-		hit[3] = rayTrace(65 + shape.getRotation());
-
-//		rays[0].line.append(sf::Vertex(shape.getPosition()));
-//		rays[0].line.append(sf::Vertex(hit[0].hitPos));
-
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < num_eyes; i++)
+		{
+			hit[i] = rayTrace(360.0f * gene.eye_positions[i] + shape.getRotation());
+		}
+		for (int i = 0; i < num_eyes; i++)
 		{
 			rays[i].line.clear();
 			rays[i].line.setPrimitiveType(Lines);
@@ -125,3 +156,4 @@ public:
 
 	}
 };
+#endif

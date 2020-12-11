@@ -69,7 +69,8 @@
 	}
 	void  Network::feedForward(vector <double>& inputVals)
 	{
-		assert(inputVals.size() == m_layers[0].size() - 1);
+	//	cout <<"\n" << m_layers[0].size();
+		assert(inputVals.size() == m_layers[0].size()-1);
 
 		// Assign (latch) the input values into the input neurons
 		for (unsigned i = 0; i < inputVals.size(); ++i) {
