@@ -51,22 +51,20 @@ public:
 
 class ChildrenPair
 {
-	Gene gene1, gene2;
+
 public:
+	Gene gene1, gene2;
 	ChildrenPair(Gene g1, Gene g2)
 	{
 		gene1 = g1; gene2 = g2;
 	}
 };
 
-class GeneticAlgorithm
+static class GeneticAlgorithm
 {
-	GeneticAlgorithm()
-	{
 
-	}
 public:
-	ChildrenPair Crossover(Gene g1, Gene g2)
+	static ChildrenPair Crossover(Gene g1, Gene g2)
 	{
 		//weights
 		vector <double> c3;

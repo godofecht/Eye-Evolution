@@ -6,46 +6,53 @@ C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(49,1): warning C
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(53,1): warning C4305: 'return': truncation from 'double' to 'float'
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(54,1): warning C4305: 'return': truncation from 'double' to 'float'
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\model.h(21,21): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(71,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(91,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\Genes.h(113,2): warning C4091: 'static ': ignored on left of 'GeneticAlgorithm' when no variable is declared
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(83,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(104,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(92,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(105,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(138,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(139,140): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(139,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(143,53): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(157,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(158,140): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(158,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(162,53): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
           with
           [
               _Ty=double
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(70,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(87,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(74,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(95,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(88,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(96,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(135,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(136,140): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(136,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(140,53): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(144,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(145,140): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(145,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(149,53): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
           with
           [
               _Ty=double
           ]
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\FitnessTables.h(20,1): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\FitnessTables.h(26,1): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\FitnessTables.h(73,1): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\FitnessTables.h(79,1): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\FitnessTables.h(119,40): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\FitnessTables.h(137,44): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
   Generating code
-  0 of 449 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  4 of 835 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

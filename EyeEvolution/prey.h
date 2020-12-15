@@ -11,7 +11,12 @@ using namespace sf;
 
 class Prey
 {
+
+
+
+
 public:
+	CircleShape* chasingPredator;
 	sf::CircleShape shape;
 
 	vector<Ray> rays; //one for left eye, one for right
@@ -23,12 +28,16 @@ public:
 
 	Vector2f position;
 
+	int RAYCAST_DISTANCE = 1000;
+
 
 	Gene gene;
 
 	int num_eyes;
 
 	double fitness = 0;
+
+
 
 	Prey(int numEyes)
 	{
@@ -44,13 +53,13 @@ public:
 
 
 		//starting position
-		position =  Vector2f(300, 300);
+		position =  Vector2f(700, 700);
 
 		distFromDestination = pow(pow(shape.getPosition().x, 2) + pow(shape.getPosition().y, 2), 1 / 2);
 
 
 
-		shape.setRadius(10);
+		shape.setRadius(30);
 //		shape.setFillColor(Color(300, 300, 300));
 		shape.setPosition(position);
 		shape.setOrigin(Vector2f(shape.getRadius(), shape.getRadius()));
@@ -60,7 +69,10 @@ public:
 		//brain stuff
 		vector<unsigned> brain_topology;
 
+
+		//PUT TOPOLOGY IN HERE !!!!!!!!!!!!!!!!!!!!!!!#!@#!@#!@#!@#!@#@!#!@#!@#!@#!#@!#!#!@#!@#!@#@!#!@#!@#
 		brain_topology.push_back(num_eyes);
+		brain_topology.push_back(num_eyes+1);
 		brain_topology.push_back(3);
 
 
@@ -68,7 +80,7 @@ public:
 		brain.InitializeTopology();
 
 		//Gene stuff
-		gene.InitializeRandom(2, brain.GetWeights().size());
+		gene.InitializeRandom(num_eyes, brain.GetWeights().size());
 		//put weights from gene into prey
 		brain.getNetwork()->PutWeights(gene.weights);
 		//place eyes accordingly
@@ -85,17 +97,24 @@ public:
 		float correctedAngle;
 		correctedAngle = shape.getRotation() + angle;
 		sf::Vector2f rayPos(shape.getPosition().x, shape.getPosition().y);
+		bool b_hit = false;
 
-		for (float i = 1; i <= 200; i++)//number of iterations
+		for (float i = 1; i <= RAYCAST_DISTANCE; i++)//number of iterations
 		{
 			rayPos.x += 1 * cos(correctedAngle * M_PI/ 180);
 			rayPos.y += 1 * sin(correctedAngle * M_PI / 180);
 			dist += pow(pow(rayPos.x, 2) * pow(rayPos.y, 2), 1 / 2);
+			dist /= RAYCAST_DISTANCE;
+			if (chasingPredator->getGlobalBounds().contains(rayPos))
+			{
+				b_hit = true;
+			}
+			
 		//	if (thisTrack->obstacles[j].polygon.getGlobalBounds().contains(rayPos))
 
 
 		}
-		Hit newHitResult(false, 0, rayPos);
+		Hit newHitResult(b_hit, 0, rayPos);
 		return newHitResult;
 	}
 

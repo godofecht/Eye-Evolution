@@ -8,25 +8,45 @@
 
 int main()
 {
+    int NUM_EYES = 2; //also a property in evironment.h, you need to merge them
+
+
+
+    vector<Prey*> sortedPrey;
+    vector<Predator*> sortedPredators;
+
+    vector<Prey*> newPrey;
+    vector<Predator*> newPredators;
+
+    Prey preyA(NUM_EYES);
+    Prey preyB(NUM_EYES);
+    Predator predatorA(NUM_EYES);
+    Predator predatorB(NUM_EYES);
+
     srand((unsigned int)time(NULL)); //necessary otherwise you'll get something like 0.71717277 every time.
 
-
+    PreyTable preyTable;
+    PredatorTable predatorTable;
+    int current_env_index = 0;
 
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
     sf::Clock clock;
 
+    const int NUM_ENVIRONMENTS = 10;
 
-    Environment savannah = Environment();
-    Environment savannah2 = Environment();
-    savannah.window = &window;
-    savannah2.window = &window;
+    Environment env[NUM_ENVIRONMENTS];
+    for (int i = 0; i < NUM_ENVIRONMENTS; i++)
+    {
+        env[i] = Environment();
+        env[i].window = &window;
+    }
+
 
 
     while (window.isOpen())
     {
         //get time
         sf::Time elapsed = clock.getElapsedTime();
-        //   std::cout << elapsed.asSeconds()<<"\n";
 
 
 
@@ -42,14 +62,116 @@ int main()
         }
 
         window.clear();
-        savannah.Run();
-        savannah2.Run();
+        //Run environment here
+        if (current_env_index < NUM_ENVIRONMENTS)
+        {
+
+
+
+            if (!env[current_env_index].bCaught && !env[current_env_index].bTimedOut)
+                env[current_env_index].Run();
+            else
+            {
+                preyTable.Add(env[current_env_index].prey, env[current_env_index].prey->fitness);
+                predatorTable.Add(env[current_env_index].predator, env[current_env_index].predator->fitness);
+                current_env_index++;
+            }
+        }
+        else
+        {
+            preyTable.Sort();
+            predatorTable.Sort();
+            sortedPrey = preyTable.getTable();
+            sortedPredators = predatorTable.getTable();
+
+
+
+            //Perform Roulette Wheel Selections and obtain new weights by crossing over using the genetic algorithm.
+            for (int i = 0; i < sortedPrey.size(); i += 2)
+            {
+                preyA = rouletteWheel(sortedPrey, preyTable.fitness_sum);
+                preyB = rouletteWheel(sortedPrey, preyTable.fitness_sum);
+                ChildrenPair children = GeneticAlgorithm::Crossover(preyA.gene, preyB.gene);
+ //               newPrey.push_back(Prey(NUM_EYES));
+                newPrey.push_back(new Prey(NUM_EYES));
+                newPrey[i]->brain.SetWeights(children.gene1.weights);
+                int ki = i + 1;
+                if ((ki) < sortedPrey.size())
+                {
+                    newPrey.push_back(new Prey(NUM_EYES));
+        //            newPrey.push_back(Prey(NUM_EYES));
+                    newPrey[ki]->brain.SetWeights(children.gene2.weights);
+                }
+            }
+            //Update existing brains with the new values
+            for (int i = 0; i < newPrey.size(); i++)
+            {
+                env[i].prey->fitness = 0;
+                env[i].prey->brain.SetWeights(newPrey[i]->brain.GetWeights());
+
+
+            }
+
+
+
+            
+            /*
+
+            //PREDATOR GOES HERE
+
+            //Perform Roulette Wheel Selections and obtain new weights by crossing over using the genetic algorithm.
+            for (int i = 0; i < sortedPredators.size(); i += 2)
+            {
+                predatorA = rouletteWheelpred(sortedPredators, predatorTable.fitness_sum);
+                predatorB = rouletteWheelpred(sortedPredators, predatorTable.fitness_sum);
+                ChildrenPair children = GeneticAlgorithm::Crossover(predatorA->gene, predatorB->gene);
+                newPredators.push_back(new Predator(NUM_EYES)); 
+     //           newPredators[i] = sortedPredators[i];
+                newPredators[i]->brain.SetWeights(children.gene1.weights);
+                if ((i + 1) < sortedPredators.size())
+                {
+                    newPredators.push_back(new Predator(NUM_EYES));
+      //              newPredators[i] = sortedPredators[i];
+                    newPredators[i + 1]->brain.SetWeights(children.gene2.weights);
+                }
+            }
+            //Update existing brains with the new values
+            for (int i = 0; i < newPredators.size(); i++)
+            {
+                env[i].predator->fitness = 0;
+                env[i].predator->brain.SetWeights(newPredators[i]->brain.GetWeights());
+
+
+            }
+
+            */
+            
+
+            
+
+            current_env_index = 0;
+            preyTable.clear();
+            predatorTable.clear();
+            sortedPrey.clear();
+            sortedPredators.clear();
+            newPrey.clear();
+            newPredators.clear();
+
+            for (int i = 0; i < NUM_ENVIRONMENTS; i++)
+                env[i].InitializeTest();
+
+
+
+        }
+
+        cout << preyTable.data.size()<<"\n";
 
         window.display();
     }
 
     return 0;
 }
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

@@ -7,6 +7,7 @@
 #include "model.h"
 #include <SFML\Graphics\CircleShape.hpp>
 
+
 using namespace sf;
 
 class Predator
@@ -30,6 +31,9 @@ public:
 
 	int num_eyes;
 
+	int RAYCAST_DISTANCE = 1000;
+
+
 	double fitness = 0;
 
 	Predator(int numEyes)
@@ -51,7 +55,7 @@ public:
 
 
 
-		shape.setRadius(12);
+		shape.setRadius(50);
 //		shape.setFillColor(Color(300, 300, 300));
 		shape.setPosition(position);
 		shape.setOrigin(Vector2f(shape.getRadius(), shape.getRadius()));
@@ -61,7 +65,7 @@ public:
 		//brain stuff
 		vector<unsigned> brain_topology;
 		brain_topology.push_back(num_eyes);
-		brain_topology.push_back(7);
+		brain_topology.push_back(num_eyes+1);
 		brain_topology.push_back(3);
 		brain.SetTopology(brain_topology);
 		brain.InitializeTopology();
@@ -73,6 +77,10 @@ public:
 		//place eyes accordingly
 
 	}
+	~Predator()
+	{
+
+	}
 
 	Hit rayTrace(float angle)
 	{
@@ -82,11 +90,12 @@ public:
 		sf::Vector2f rayPos(shape.getPosition().x, shape.getPosition().y);
 		bool b_hit = false;
 
-		for (float i = 1; i <= 200; i++)//number of iterations
+		for (float i = 1; i <= RAYCAST_DISTANCE; i++)//number of iterations
 		{
 			rayPos.x += 1 * cos(correctedAngle * M_PI / 180);
 			rayPos.y += 1 * sin(correctedAngle * M_PI / 180);
 			dist += pow(pow(rayPos.x, 2) * pow(rayPos.y, 2), 1 / 2);
+			dist /= RAYCAST_DISTANCE;
 			if (chasedPrey->shape.getGlobalBounds().contains(rayPos))
 			{
 				b_hit = true;
