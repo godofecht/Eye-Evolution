@@ -11,7 +11,7 @@
 			// We have a new layer, now fill it with neurons, and a bias neuron in each layer.
 			for (unsigned neuronNum = 0; neuronNum <= topology[layerNum]; ++neuronNum) {
 				m_layers.back().push_back(Neuron(numOutputs, neuronNum));
-				cout << "Made a Neuron!" << endl;
+	//			cout << "Made a Neuron!" << endl;
 			}
 
 			// Force the bias node's output to 1.0 (it was the last neuron pushed in this layer):

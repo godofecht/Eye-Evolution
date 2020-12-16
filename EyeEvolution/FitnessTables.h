@@ -1,3 +1,6 @@
+#ifndef FITNESSTABLES_H
+#define FITNESSTABLES_H
+
 #pragma once
 #include <vector>
 #include "predator.h"
@@ -140,3 +143,5 @@ Predator rouletteWheelpred(vector<Predator*> predator, int fitnessSum)
     }
     return *predator[r];
 }
+
+#endif

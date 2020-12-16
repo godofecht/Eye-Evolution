@@ -29,17 +29,63 @@ int main()
     PredatorTable predatorTable;
     int current_env_index = 0;
 
+    bool bAllTestsOver;
+
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
     sf::Clock clock;
 
-    const int NUM_ENVIRONMENTS = 10;
+    const int NUM_ENVIRONMENTS = 1;
 
     Environment env[NUM_ENVIRONMENTS];
-    for (int i = 0; i < NUM_ENVIRONMENTS; i++)
+
+    Environment environd;
+
+ /*   for (int i = 0; i < NUM_ENVIRONMENTS; i++)
     {
         env[i] = Environment();
         env[i].window = &window;
     }
+
+
+*/
+
+    environd = Environment();
+    environd.window = &window;
+
+
+
+
+
+
+    sf::Font font;
+
+
+
+    if (!font.loadFromFile("arial.ttf"))
+    {
+        // error...
+    }
+
+
+    /*
+
+    Iteration_Counter.setPosition(100, 100);
+
+    Iteration_Counter.setFont(font); // font is a sf::Font
+//       Iteration_Counter.setString(to_string(NUM_ITERATIONS));
+    Iteration_Counter.setCharacterSize(50); // in pixels, not points!
+    Iteration_Counter.setFillColor(sf::Color::Blue);
+    Iteration_Counter.setStyle(sf::Text::Bold | sf::Text::Underlined);
+    Iteration_Counter.setString("yo");
+
+
+    */
+
+
+
+
+
+
 
 
 
@@ -62,12 +108,178 @@ int main()
         }
 
         window.clear();
-        //Run environment here
+
+   //     window.draw(Iteration_Counter);
+
+        environd.Iteration_Counter.setFont(font);
+        environd.Run();
+        
+
+        if (environd.bOver)
+        {
+            environd.InitializeTest();
+        }
+        
+
+        
+        
+        //ASynchronous Environment run HERE!!!!!
+
+   /*     for (int i = 0; i < NUM_ENVIRONMENTS; i++)
+        {
+                env[i].Run();
+        }
+
+
+        
+
+        bAllTestsOver = true;
+        for (int i = 0; i < NUM_ENVIRONMENTS; i++)
+        {
+            if (env[i].bOver == false)
+                bAllTestsOver = false;
+        }
+        if(bAllTestsOver)
+        {
+            for (int i = 0; i < NUM_ENVIRONMENTS; i++)
+            {
+                for(int prey_i = 0;prey_i<env[i].num_prey;prey_i++)
+                    preyTable.Add(env[i].prey[prey_i], env[i].prey[prey_i]->fitness);
+                for (int predator_i = 0; predator_i < env[i].num_prey; predator_i++)
+                    predatorTable.Add(env[i].predator[predator_i], env[i].predator[predator_i]->fitness);
+
+
+                preyTable.Sort();
+                predatorTable.Sort();
+                sortedPrey = preyTable.getTable();
+                sortedPredators = predatorTable.getTable();
+
+
+
+                //Perform Roulette Wheel Selections and obtain new weights by crossing over using the genetic algorithm.
+                for (int i = 0; i < sortedPrey.size(); i += 2)
+                {
+                    preyA = rouletteWheel(sortedPrey, preyTable.fitness_sum);
+                    preyB = rouletteWheel(sortedPrey, preyTable.fitness_sum);
+                    ChildrenPair children = GeneticAlgorithm::Crossover(preyA.gene, preyB.gene);
+                    //               newPrey.push_back(Prey(NUM_EYES));
+                    newPrey.push_back(new Prey(NUM_EYES));
+                    newPrey[i]->brain.SetWeights(children.gene1.weights);
+                    int ki = i + 1;
+                    if ((ki) < sortedPrey.size())
+                    {
+                        newPrey.push_back(new Prey(NUM_EYES));
+                        //            newPrey.push_back(Prey(NUM_EYES));
+                        newPrey[ki]->brain.SetWeights(children.gene2.weights);
+                    }
+                }
+                //Update existing brains with the new values
+                for (int i = 0; i < newPrey.size(); i++)
+                {
+                    for (int prey_i = 0; prey_i < env[i].num_prey; prey_i++)
+                    {
+                        env[i].prey[prey_i]->fitness = 0;
+                        env[i].prey[prey_i]->brain.SetWeights(newPrey[i]->brain.GetWeights());
+                    }
+
+
+                }
+                //PREDATOR GOES HERE
+
+                //Perform Roulette Wheel Selections and obtain new weights by crossing over using the genetic algorithm.
+                for (int i = 0; i < sortedPredators.size(); i += 2)
+                {
+                    predatorA = rouletteWheelpred(sortedPredators, predatorTable.fitness_sum);
+                    predatorB = rouletteWheelpred(sortedPredators, predatorTable.fitness_sum);
+                    ChildrenPair children = GeneticAlgorithm::Crossover(predatorA.gene, predatorB.gene);
+                    newPredators.push_back(new Predator(NUM_EYES));
+                    //           newPredators[i] = sortedPredators[i];
+                    newPredators[i]->brain.SetWeights(children.gene1.weights);
+                    if ((i + 1) < sortedPredators.size())
+                    {
+                        newPredators.push_back(new Predator(NUM_EYES));
+                        //              newPredators[i] = sortedPredators[i];
+                        newPredators[i + 1]->brain.SetWeights(children.gene2.weights);
+                    }
+                }
+                //Update existing brains with the new values
+                for (int i = 0; i < newPredators.size(); i++)
+                {
+                    for (int predator_i = 0; predator_i < env[i].num_prey; predator_i++)
+                    {
+
+                        env[i].predator[predator_i]->fitness = 0;
+                        env[i].predator[predator_i]->brain.SetWeights(newPredators[i]->brain.GetWeights());
+
+                    }
+                }
+
+
+
+
+
+
+                current_env_index = 0;
+                preyTable.clear();
+                predatorTable.clear();
+                sortedPrey.clear();
+                sortedPredators.clear();
+                newPrey.clear();
+                newPredators.clear();
+
+                env[i].bOver = false;
+
+                env[i].InitializeTest();
+            }
+        }
+
+
+
+        */
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+/*
+
+        //Synchronous Environment Run HERE!!!!!
+
         if (current_env_index < NUM_ENVIRONMENTS)
         {
-
-
-
             if (!env[current_env_index].bCaught && !env[current_env_index].bTimedOut)
                 env[current_env_index].Run();
             else
@@ -111,12 +323,6 @@ int main()
 
 
             }
-
-
-
-            
-            /*
-
             //PREDATOR GOES HERE
 
             //Perform Roulette Wheel Selections and obtain new weights by crossing over using the genetic algorithm.
@@ -124,7 +330,7 @@ int main()
             {
                 predatorA = rouletteWheelpred(sortedPredators, predatorTable.fitness_sum);
                 predatorB = rouletteWheelpred(sortedPredators, predatorTable.fitness_sum);
-                ChildrenPair children = GeneticAlgorithm::Crossover(predatorA->gene, predatorB->gene);
+                ChildrenPair children = GeneticAlgorithm::Crossover(predatorA.gene, predatorB.gene);
                 newPredators.push_back(new Predator(NUM_EYES)); 
      //           newPredators[i] = sortedPredators[i];
                 newPredators[i]->brain.SetWeights(children.gene1.weights);
@@ -144,7 +350,7 @@ int main()
 
             }
 
-            */
+            
             
 
             
@@ -165,6 +371,10 @@ int main()
         }
 
         cout << preyTable.data.size()<<"\n";
+
+        
+        */
+
 
         window.display();
     }

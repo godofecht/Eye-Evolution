@@ -70,7 +70,7 @@ public:
 		vector <double> c3;
 		vector <double> c4;
 		vector<double> c1 = g1.weights; vector<double>c2 = g2.weights;
-		int crossoverPoint = rand() % (c1.size() - 1);
+		int crossoverPoint = rand() % (c1.size());
 		for (int i = 0; i < c1.size(); i++)
 		{
 			if (i < crossoverPoint)
@@ -90,7 +90,7 @@ public:
 		vector <double> c5;
 		vector <double> c6;
 		vector<double> c7 = g1.eye_positions; vector<double>c8 = g2.eye_positions;
-		crossoverPoint = rand() % (c7.size() - 1);
+		crossoverPoint = rand() % (c7.size());
 		for (int i = 0; i < c7.size(); i++)
 		{
 			if (i < crossoverPoint)

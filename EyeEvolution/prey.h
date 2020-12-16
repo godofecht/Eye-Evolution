@@ -16,7 +16,7 @@ class Prey
 
 
 public:
-	CircleShape* chasingPredator;
+	vector<CircleShape*> chasingPredator;
 	sf::CircleShape shape;
 
 	vector<Ray> rays; //one for left eye, one for right
@@ -36,6 +36,14 @@ public:
 	int num_eyes;
 
 	double fitness = 0;
+
+
+
+	bool bCaught = false;
+
+
+	double rotationSpeed = 1;
+	double positionSpeed = 10;
 
 
 
@@ -59,7 +67,7 @@ public:
 
 
 
-		shape.setRadius(30);
+		shape.setRadius(10);
 //		shape.setFillColor(Color(300, 300, 300));
 		shape.setPosition(position);
 		shape.setOrigin(Vector2f(shape.getRadius(), shape.getRadius()));
@@ -73,7 +81,8 @@ public:
 		//PUT TOPOLOGY IN HERE !!!!!!!!!!!!!!!!!!!!!!!#!@#!@#!@#!@#!@#@!#!@#!@#!@#!#@!#!#!@#!@#!@#@!#!@#!@#
 		brain_topology.push_back(num_eyes);
 		brain_topology.push_back(num_eyes+1);
-		brain_topology.push_back(3);
+		brain_topology.push_back(num_eyes + 1);
+		brain_topology.push_back(4);
 
 
 		brain.SetTopology(brain_topology);
@@ -105,10 +114,16 @@ public:
 			rayPos.y += 1 * sin(correctedAngle * M_PI / 180);
 			dist += pow(pow(rayPos.x, 2) * pow(rayPos.y, 2), 1 / 2);
 			dist /= RAYCAST_DISTANCE;
-			if (chasingPredator->getGlobalBounds().contains(rayPos))
-			{
-				b_hit = true;
-			}
+
+			for (int index = 0; index < chasingPredator.size(); index++) {
+				if (chasingPredator[index]->getGlobalBounds().contains(rayPos))
+				{
+					b_hit = true;
+					Hit newHitResult(b_hit, 0, rayPos);
+					return newHitResult;
+				}
+			}  
+
 			
 		//	if (thisTrack->obstacles[j].polygon.getGlobalBounds().contains(rayPos))
 
@@ -140,7 +155,7 @@ public:
 			if (hit[i].bHit)
 				inputVector.push_back(1);
 			else
-				inputVector.push_back(0);
+				inputVector.push_back(-1);
 
 		}
 
@@ -148,11 +163,10 @@ public:
 	//	inputVector.push_back(0.2);
 
 		movementVector = GetMovementVector(inputVector);
-		double movementForward = movementVector[0];
-		double rotation = movementVector[1];
+		double movementForward = movementVector[0] - movementVector[1];
+		double rotation = movementVector[2] - movementVector[3];
 
-		double rotationSpeed = 0.1;
-		double positionSpeed = 0.1;
+
 
 		shape.setRotation(shape.getRotation() + rotationSpeed * (rotation));
 		shape.setPosition(shape.getPosition().x + positionSpeed * movementForward * cos(shape.getRotation() * M_PI / 180), shape.getPosition().y + positionSpeed *movementForward * sin(shape.getRotation() * M_PI / 180));
@@ -167,12 +181,40 @@ public:
 			rays[i].line.setPrimitiveType(Lines);
 			rays[i].line.append(shape.getPosition());
 			rays[i].line.append(hit[i].hitPos);
+
+			if (hit[i].bHit)
+			{
+				rays[i].line[0].color = sf::Color(255, 0, 0);
+				rays[i].line[1].color = sf::Color(255, 0, 0);
+			}
+			else
+			{
+				rays[i].line[0].color = sf::Color(255, 255, 255);
+				rays[i].line[1].color = sf::Color(255, 255, 255);
+			}
 		}
 
 
-		
+		if (!bCaught)
+		{
+			if (shape.getPosition().x < 0)
+				shape.setPosition(1000, shape.getPosition().y);
 
+			if (shape.getPosition().y < 0)
+				shape.setPosition(shape.getPosition().x, 1000);
 
+			if (shape.getPosition().x > 1000)
+				shape.setPosition(0, shape.getPosition().y);
+
+			if (shape.getPosition().y > 1000)
+				shape.setPosition(shape.getPosition().x, 0);
+		}
+
+	}
+
+	void Die()
+	{
+		shape.setPosition(Vector2f(-1000, -4000));
 	}
 };
 #endif

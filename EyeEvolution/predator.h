@@ -14,27 +14,27 @@ class Predator
 {
 public:
 	CircleShape shape;
-
 	vector<Ray> rays; //one for left eye, one for right
 	Hit* hit; //might be worth combining ray and hit
-
 	float distFromDestination;
-
 	Model brain;
-
 	Vector2f position;
-
 	Gene gene;
-
-	Prey* chasedPrey;
-
-
+	vector<Prey*> chasedPrey;
 	int num_eyes;
-
 	int RAYCAST_DISTANCE = 1000;
-
-
 	double fitness = 0;
+
+	bool bCaught = false;
+
+
+	double rotationSpeed = 1;
+	double positionSpeed = 10;
+
+
+
+	
+
 
 	Predator(int numEyes)
 	{
@@ -46,27 +46,23 @@ public:
 		{
 			rays.push_back(Ray());
 		}
-
-
 		//starting position
 		position = Vector2f(300, 300);
 
 		distFromDestination = pow(pow(shape.getPosition().x, 2) + pow(shape.getPosition().y, 2), 1 / 2);
-
-
-
-		shape.setRadius(50);
+		shape.setRadius(10);
 //		shape.setFillColor(Color(300, 300, 300));
 		shape.setPosition(position);
 		shape.setOrigin(Vector2f(shape.getRadius(), shape.getRadius()));
-		shape.setRotation(45);
+	//	shape.setRotation(45);
 
 
 		//brain stuff
 		vector<unsigned> brain_topology;
 		brain_topology.push_back(num_eyes);
 		brain_topology.push_back(num_eyes+1);
-		brain_topology.push_back(3);
+		brain_topology.push_back(num_eyes + 1);
+		brain_topology.push_back(4);
 		brain.SetTopology(brain_topology);
 		brain.InitializeTopology();
 
@@ -84,6 +80,8 @@ public:
 
 	Hit rayTrace(float angle)
 	{
+
+
 		double dist = 0;
 		float correctedAngle;
 		correctedAngle = shape.getRotation() + angle;
@@ -96,12 +94,16 @@ public:
 			rayPos.y += 1 * sin(correctedAngle * M_PI / 180);
 			dist += pow(pow(rayPos.x, 2) * pow(rayPos.y, 2), 1 / 2);
 			dist /= RAYCAST_DISTANCE;
-			if (chasedPrey->shape.getGlobalBounds().contains(rayPos))
+
+			for (int index = 0; index < chasedPrey.size(); index++)
 			{
-				b_hit = true;
-			}
-
-
+				if (chasedPrey[index]->shape.getGlobalBounds().contains(rayPos))
+				{
+					b_hit = true;
+					Hit newHitResult(b_hit, 0, rayPos);
+					return newHitResult;
+				}
+			}  
 		}
 		Hit newHitResult(b_hit, 0, rayPos);
 		return newHitResult;
@@ -117,49 +119,66 @@ public:
 
 	void Behave()
 	{
+			vector<double> movementVector;
+			vector<double> inputVector;
+			inputVector.clear();
+			for (int i = 0; i < num_eyes; i++)
+			{
+				if (hit[i].bHit)
+					inputVector.push_back(1);
+				else
+					inputVector.push_back(-1);
+
+			}
+			movementVector = GetMovementVector(inputVector);
+			double movementForward = movementVector[0] - movementVector[1];
+			double rotation = movementVector[2] - movementVector[3];
 
 
 
-		vector<double> movementVector;
-		vector<double> inputVector;
-		inputVector.clear();
+			shape.setRotation(shape.getRotation() + rotationSpeed * (rotation));
+			shape.setPosition(shape.getPosition().x + positionSpeed * movementForward * cos(shape.getRotation() * M_PI / 180), shape.getPosition().y + positionSpeed * movementForward * sin(shape.getRotation() * M_PI / 180));
+
+			for (int i = 0; i < num_eyes; i++)
+			{
+				hit[i] = rayTrace(360.0f * gene.eye_positions[i] + shape.getRotation());
+			}
+			for (int i = 0; i < num_eyes; i++)
+			{
+				rays[i].line.clear();
+				rays[i].line.setPrimitiveType(Lines);
+				rays[i].line.append(shape.getPosition());
+				rays[i].line.append(hit[i].hitPos);
+
+				if (hit[i].bHit)
+				{
+					rays[i].line[0].color = sf::Color(255, 0, 0);
+					rays[i].line[1].color = sf::Color(255, 0, 0);
+				}
+				else
+				{
+					rays[i].line[0].color = sf::Color(255, 255, 255);
+					rays[i].line[1].color = sf::Color(255, 255, 255);
+				}
+			}
+
+			if (shape.getPosition().x < 0)
+				shape.setPosition(0, shape.getPosition().y);
+
+			if (shape.getPosition().y < 0)
+				shape.setPosition(shape.getPosition().x, 0);
+
+			if (shape.getPosition().x > 1000)
+				shape.setPosition(1000, shape.getPosition().y);
+
+			if (shape.getPosition().y > 1000)
+				shape.setPosition(shape.getPosition().x, 1000);
+	}
 
 
-		for (int i = 0; i < num_eyes; i++)
-		{
-			if (hit[i].bHit)
-				inputVector.push_back(1);
-			else
-				inputVector.push_back(0);
-
-		}
-
-		movementVector = GetMovementVector(inputVector);
-		double movementForward = movementVector[0];
-		double rotation = movementVector[1] - movementVector[2];
-
-		double rotationSpeed = 0.1;
-		double positionSpeed = 0.1;
-
-		shape.setRotation(shape.getRotation() + rotationSpeed * (rotation));
-		shape.setPosition(shape.getPosition().x + positionSpeed * movementForward * cos(shape.getRotation() * M_PI / 180), shape.getPosition().y + positionSpeed * movementForward * sin(shape.getRotation() * M_PI / 180));
-
-		for (int i = 0; i < num_eyes; i++)
-		{
-			hit[i] = rayTrace(360.0f * gene.eye_positions[i] + shape.getRotation());
-		}
-		for (int i = 0; i < num_eyes; i++)
-		{
-			rays[i].line.clear();
-			rays[i].line.setPrimitiveType(Lines);
-			rays[i].line.append(shape.getPosition());
-			rays[i].line.append(hit[i].hitPos);
-		}
-
-		
-		
-
-
+	void Die()
+	{
+		shape.setPosition(Vector2f(-1000, -1000));
 
 	}
 };
