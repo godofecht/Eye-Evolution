@@ -29,7 +29,7 @@ public:
 
 
 	double rotationSpeed = 1;
-	double positionSpeed = 10;
+	double positionSpeed = 1;
 
 
 
@@ -60,8 +60,10 @@ public:
 		//brain stuff
 		vector<unsigned> brain_topology;
 		brain_topology.push_back(num_eyes);
-		brain_topology.push_back(num_eyes+1);
 		brain_topology.push_back(num_eyes + 1);
+		// brain_topology.push_back(num_eyes + 1);
+		// brain_topology.push_back(num_eyes + 1);
+		// brain_topology.push_back(num_eyes + 1);
 		brain_topology.push_back(4);
 		brain.SetTopology(brain_topology);
 		brain.InitializeTopology();
@@ -100,12 +102,12 @@ public:
 				if (chasedPrey[index]->shape.getGlobalBounds().contains(rayPos))
 				{
 					b_hit = true;
-					Hit newHitResult(b_hit, 0, rayPos);
+					Hit newHitResult(b_hit, 0, rayPos,"prey");
 					return newHitResult;
 				}
 			}  
 		}
-		Hit newHitResult(b_hit, 0, rayPos);
+		Hit newHitResult(b_hit, 0, rayPos,"none");
 		return newHitResult;
 	}
 
@@ -125,19 +127,19 @@ public:
 			for (int i = 0; i < num_eyes; i++)
 			{
 				if (hit[i].bHit)
-					inputVector.push_back(1);
+					inputVector.push_back(1.0f);
 				else
-					inputVector.push_back(-1);
+					inputVector.push_back(-1.0f);
 
 			}
 			movementVector = GetMovementVector(inputVector);
-			double movementForward = movementVector[0] - movementVector[1];
+			double movementForward = movementVector[0];// -movementVector[1];
 			double rotation = movementVector[2] - movementVector[3];
 
 
 
 			shape.setRotation(shape.getRotation() + rotationSpeed * (rotation));
-			shape.setPosition(shape.getPosition().x + positionSpeed * movementForward * cos(shape.getRotation() * M_PI / 180), shape.getPosition().y + positionSpeed * movementForward * sin(shape.getRotation() * M_PI / 180));
+			shape.setPosition(shape.getPosition().x + positionSpeed * 1 * cos(shape.getRotation() * M_PI / 180), shape.getPosition().y + positionSpeed * movementForward * sin(shape.getRotation() * M_PI / 180));
 
 			for (int i = 0; i < num_eyes; i++)
 			{

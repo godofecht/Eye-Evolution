@@ -50,6 +50,7 @@ int main()
 */
 
     environd = Environment();
+    environd.bBatchTest = true;
     environd.window = &window;
 
 
@@ -65,22 +66,6 @@ int main()
     {
         // error...
     }
-
-
-    /*
-
-    Iteration_Counter.setPosition(100, 100);
-
-    Iteration_Counter.setFont(font); // font is a sf::Font
-//       Iteration_Counter.setString(to_string(NUM_ITERATIONS));
-    Iteration_Counter.setCharacterSize(50); // in pixels, not points!
-    Iteration_Counter.setFillColor(sf::Color::Blue);
-    Iteration_Counter.setStyle(sf::Text::Bold | sf::Text::Underlined);
-    Iteration_Counter.setString("yo");
-
-
-    */
-
 
 
 

@@ -12,17 +12,21 @@ public:
 	bool bHit;
 	double hitDist;
 	Vector2f hitPos;
+
+	String hitObj;
+
 	Hit()
 	{
 		bHit = false;
 		hitDist = 0;
 		hitPos = Vector2f(0, 0);
 	}
-	Hit(bool bh, double hd, Vector2f hp)
+	Hit(bool bh, double hd, Vector2f hp, String ho)
 	{
 		bHit = bh;
 		hitDist = hd;
 		hitPos = hp;
+		hitObj = ho;
 	}
 };
 class Ray

@@ -1,46 +1,46 @@
 ﻿  EyeEvolution.cpp
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(44,10): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(44,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(48,1): warning C4305: 'return': truncation from 'double' to 'float'
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(49,1): warning C4305: 'return': truncation from 'double' to 'float'
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(48,10): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(48,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(52,1): warning C4305: 'return': truncation from 'double' to 'float'
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(53,1): warning C4305: 'return': truncation from 'double' to 'float'
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(54,1): warning C4305: 'return': truncation from 'double' to 'float'
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(57,1): warning C4305: 'return': truncation from 'double' to 'float'
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\RayCast.h(58,1): warning C4305: 'return': truncation from 'double' to 'float'
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\model.h(21,21): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\Genes.h(113,2): warning C4091: 'static ': ignored on left of 'GeneticAlgorithm' when no variable is declared
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(92,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(113,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(96,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(117,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(114,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(118,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(171,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(172,140): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(172,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(176,53): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(187,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(188,126): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(188,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\prey.h(192,53): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
           with
           [
               _Ty=double
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(70,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(93,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(72,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(95,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(94,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(96,1): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(139,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(140,141): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(140,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(144,54): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(141,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(142,127): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(142,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\predator.h(146,54): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
           with
           [
               _Ty=double
@@ -51,21 +51,21 @@ C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\FitnessTables.h(76,1): war
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\FitnessTables.h(82,1): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\FitnessTables.h(122,40): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\FitnessTables.h(140,44): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\Environment.h(266,92): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\Environment.h(299,92): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\Environment.h(266,78): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\Environment.h(299,78): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\Environment.h(291,14): warning C4101: 'bAllTestsOver': unreferenced local variable
+C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\Environment.h(352,14): warning C4101: 'bAllTestsOver': unreferenced local variable
 C:\Users\abhis\source\repos\EyeEvolution\EyeEvolution\EyeEvolution.cpp(32,10): warning C4101: 'bAllTestsOver': unreferenced local variable
   Generating code
-  1 of 997 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  4 of 1040 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   EyeEvolution.vcxproj -> C:\Users\abhis\source\repos\EyeEvolution\x64\Release\EyeEvolution.exe

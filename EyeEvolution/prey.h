@@ -17,6 +17,8 @@ class Prey
 
 public:
 	vector<CircleShape*> chasingPredator;
+	vector<CircleShape*> foodVector;
+
 	sf::CircleShape shape;
 
 	vector<Ray> rays; //one for left eye, one for right
@@ -43,7 +45,7 @@ public:
 
 
 	double rotationSpeed = 1;
-	double positionSpeed = 10;
+	double positionSpeed = 1;
 
 
 
@@ -80,8 +82,10 @@ public:
 
 		//PUT TOPOLOGY IN HERE !!!!!!!!!!!!!!!!!!!!!!!#!@#!@#!@#!@#!@#@!#!@#!@#!@#!#@!#!#!@#!@#!@#@!#!@#!@#
 		brain_topology.push_back(num_eyes);
-		brain_topology.push_back(num_eyes+1);
 		brain_topology.push_back(num_eyes + 1);
+		brain_topology.push_back(num_eyes + 1);
+	//	brain_topology.push_back(num_eyes + 1);
+	//	brain_topology.push_back(num_eyes + 1);
 		brain_topology.push_back(4);
 
 
@@ -119,17 +123,26 @@ public:
 				if (chasingPredator[index]->getGlobalBounds().contains(rayPos))
 				{
 					b_hit = true;
-					Hit newHitResult(b_hit, 0, rayPos);
+					Hit newHitResult(b_hit, 0, rayPos,"predator");
 					return newHitResult;
 				}
 			}  
+
+			for (int index = 0; index < foodVector.size(); index++) {
+				if (foodVector[index]->getGlobalBounds().contains(rayPos))
+				{
+					b_hit = true;
+					Hit newHitResult(b_hit, 0, rayPos,"food");
+					return newHitResult;
+				}
+			}
 
 			
 		//	if (thisTrack->obstacles[j].polygon.getGlobalBounds().contains(rayPos))
 
 
 		}
-		Hit newHitResult(b_hit, 0, rayPos);
+		Hit newHitResult(b_hit, 0, rayPos,"none");
 		return newHitResult;
 	}
 
@@ -153,9 +166,12 @@ public:
 		for (int i = 0; i < num_eyes; i++)
 		{
 			if (hit[i].bHit)
-				inputVector.push_back(1);
+				if (hit[i].hitObj == "predator")
+					inputVector.push_back(1.0f);
+				else// (hit[i].hitObj == "food")
+					inputVector.push_back(0.5f);
 			else
-				inputVector.push_back(-1);
+				inputVector.push_back(-1.0f);
 
 		}
 
@@ -163,13 +179,13 @@ public:
 	//	inputVector.push_back(0.2);
 
 		movementVector = GetMovementVector(inputVector);
-		double movementForward = movementVector[0] - movementVector[1];
+		double movementForward = movementVector[0];// -movementVector[1];
 		double rotation = movementVector[2] - movementVector[3];
 
 
 
 		shape.setRotation(shape.getRotation() + rotationSpeed * (rotation));
-		shape.setPosition(shape.getPosition().x + positionSpeed * movementForward * cos(shape.getRotation() * M_PI / 180), shape.getPosition().y + positionSpeed *movementForward * sin(shape.getRotation() * M_PI / 180));
+		shape.setPosition(shape.getPosition().x + positionSpeed * 1 * cos(shape.getRotation() * M_PI / 180), shape.getPosition().y + positionSpeed *movementForward * sin(shape.getRotation() * M_PI / 180));
 
 		for (int i = 0; i < num_eyes; i++)
 		{
